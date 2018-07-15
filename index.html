@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Movie Giphy</title>
+</head>
+
+<body>
+
+  <div id="display"></div>
+  <div id="buttons"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  </script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+
+      var topics = ["The Devil Wears Prada", "She's the man", "Mean Girls", "Bride Wars", "A walk to remember", "Harry Potter", "Avengers", "Finding Nemo", "Frozen", "James Bond"]
+
+      for (var i = 0; i < topics.length; i++) {
+
+        var movieBtn = $("<button>");
+
+        movieBtn.attr("data-movie", topics[i]);
+
+        movieBtn.text(topics[i]);
+
+        $("#buttons").append(movieBtn);
+
+      }
+
+
+      $("#button").on("click", function () {
+        var movie = $(this).attr("data-movie");
+
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + movie + "&api_key=1fQRBPPg8tRx4ZVUkHyqOTBhlHJ3ATQl&limit=10&rating=G";
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).then(function (response) {
+          var results = response.data;
+          var movieImage = $("<img>");
+
+
+        });
+
+
+      });
+
+
+
+    });
+  </script>
+
+
+
+</body>
+
+</html>
