@@ -10,100 +10,20 @@
 <body>
 
   <div id="buttons"></div>
+
+
+  <form>
+    <div class="form-group">
+      <label for="movieTitle">Movie Title</label>
+      <input type="text" class="form-control" id="movieTitle" placeholder="Enter movie here">
+    </div>
+    <button id="addMovie" type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
   <div id="display"></div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-  </script>
-
-  <script type="text/javascript">
-
-    function reset() {
-      movieImage.attr("src", results[i].images.fixed_height_still.url);
-
-      movieImage.attr("data-still", results[i].images.fixed_height_still.url);
-
-      movieImage.attr("data-animate", results[i].images.fixed_height.url);
-
-      movieImage.attr("data-state", "still");
-
-      movieImage.addClass("gifs");
-    }
-
-    $(document).ready(function () {
-
-      var topics = ["The Devil Wears Prada", "She's the man", "Mean Girls", "Bride Wars", "A walk to remember", "Harry Potter", "The Incredibles", "Finding Nemo", "Frozen", "The Avengers"]
-
-      for (var i = 0; i < topics.length; i++) {
-
-        var movieBtn = $("<button>");
-
-        movieBtn.attr("data-movie", topics[i]);
-
-        movieBtn.text(topics[i]);
-
-        $("#buttons").append(movieBtn);
-
-      }
-
-      $("button").on("click", function () {
-
-        $("#display").empty();
-
-        var movie = $(this).attr("data-movie");
-
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + movie + "&api_key=1fQRBPPg8tRx4ZVUkHyqOTBhlHJ3ATQl&limit=10&rating=G";
-
-        $.ajax({
-          url: queryURL,
-          method: "GET"
-        }).then(function (response) {
-          var results = response.data;
-
-          for (var i = 0; i < results.length; i++) {
-
-            var gifDiv = $("<div class='item'>");
-
-            var rating = results[i].rating;
-
-            var p = $("<p>").text("Rating: " + rating);
-
-            var movieImage = $("<img>");
-
-            movieImage.attr("src", results[i].images.fixed_height_still.url);
-
-            movieImage.attr("data-still", results[i].images.fixed_height_still.url);
-
-            movieImage.attr("data-animate", results[i].images.fixed_height.url);
-
-            movieImage.attr("data-state", "still");
-
-            movieImage.addClass("gifs");
-
-            gifDiv.append(movieImage);
-            gifDiv.append(p);
-
-            $("#display").prepend(gifDiv);
-          }
-        });
-
-        $(document).on("click", ".gifs", function () {
-
-          var state = $(this).attr("data-state");
-          if (state === "still") {
-            $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state", "animate");
-          } else {
-            $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state", "still");
-          }
-
-          reset();
-        });
-      });
-
-    });
-
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 
 </html>
