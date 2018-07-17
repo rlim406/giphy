@@ -34,10 +34,11 @@ function displayBtn() {
 
 function addButton() {
   $("#addMovie").on("click", function () {
+    event.preventDefault();
     var newMovie = $("#movieTitle").val().trim();
     topics.push(newMovie);
+    newMovie = $("#movieTitle").val("");
     displayBtn();
-    return false;
   });
 }
 
